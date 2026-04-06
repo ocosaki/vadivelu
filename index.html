@@ -500,24 +500,25 @@ function renderQuestion() {
   var grid = document.getElementById('options-grid');
   grid.innerHTML = '';
   for (var i = 0; i < q.options.length; i++) {
-    (function(opt) {
+    (function(opt, idx) {
       var btn = document.createElement('button');
       btn.className = 'option-btn';
+      btn.setAttribute('data-idx', idx);
       btn.innerHTML = '<span class="option-letter">' + opt.letter + '</span><span>' + opt.text + '</span>';
-      btn.addEventListener('click', function() { selectOption(opt.char, btn); });
+      btn.addEventListener('click', function() { selectOption(opt.char, idx); });
       grid.appendChild(btn);
-    })(q.options[i]);
+    })(q.options[i], i);
   }
 }
 
-function selectOption(char, btn) {
+function selectOption(char, idx) {
   var btns = document.querySelectorAll('.option-btn');
   for (var i = 0; i < btns.length; i++) btns[i].classList.remove('selected');
-  btn.classList.add('selected');
+  var selected = document.querySelector('.option-btn[data-idx="' + idx + '"]');
+  if (selected) selected.classList.add('selected');
   scores[char] = (scores[char] || 0) + 1;
   setTimeout(function() {
-    var allBtns = document.querySelectorAll('.option-btn');
-    for (var j = 0; j < allBtns.length; j++) allBtns[j].classList.remove('selected');
+    document.getElementById('options-grid').innerHTML = '';
     currentQ++;
     if (currentQ < questions.length) {
       renderQuestion();
