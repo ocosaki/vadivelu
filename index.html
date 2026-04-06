@@ -187,6 +187,9 @@ body::after {
   width: 100%;
 }
 .option-btn:hover { border-color: rgba(201,168,76,0.4); background: rgba(201,168,76,0.06); transform: translateX(4px); }
+@media (hover: none) {
+  .option-btn:hover { border-color: rgba(255,255,255,0.08); background: var(--card); transform: none; }
+}
 .option-btn.selected { border-color: var(--gold); background: rgba(201,168,76,0.1); }
 .option-letter { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--gold); min-width: 20px; margin-top: 1px; }
 
