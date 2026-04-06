@@ -572,6 +572,16 @@ document.addEventListener('DOMContentLoaded', function() {
   showScreen('screen-intro');
 });
 
+window.addEventListener('pageshow', function(e) {
+  if (e.persisted) {
+    scores = {};
+    currentQ = 0;
+    var keys = Object.keys(characters);
+    for (var i = 0; i < keys.length; i++) scores[keys[i]] = 0;
+    showScreen('screen-intro');
+  }
+});
+
 document.getElementById('btn-start').addEventListener('click', startQuiz);
 document.getElementById('btn-retake').addEventListener('click', retake);
 document.getElementById('btn-oco').addEventListener('click', function() {
