@@ -568,6 +568,10 @@ function retake() {
   startQuiz();
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+  showScreen('screen-intro');
+});
+
 document.getElementById('btn-start').addEventListener('click', startQuiz);
 document.getElementById('btn-retake').addEventListener('click', retake);
 document.getElementById('btn-oco').addEventListener('click', function() {
