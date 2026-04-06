@@ -516,6 +516,8 @@ function selectOption(char, btn) {
   btn.classList.add('selected');
   scores[char] = (scores[char] || 0) + 1;
   setTimeout(function() {
+    var allBtns = document.querySelectorAll('.option-btn');
+    for (var j = 0; j < allBtns.length; j++) allBtns[j].classList.remove('selected');
     currentQ++;
     if (currentQ < questions.length) {
       renderQuestion();
